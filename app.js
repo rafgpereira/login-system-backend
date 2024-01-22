@@ -204,7 +204,7 @@ mongoose
         process.env.DB_CONNECT
     )
     .then(()=>{
-        console.log('Conectado ao banco de dados!')
+        console.log('Conected')
     })
     .catch(err=>console.log(err))
 
