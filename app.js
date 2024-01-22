@@ -11,7 +11,10 @@ const app = express()
 //Configura resposta JSON
 app.use(express.json())
 //Configura CORS
-app.use(cors())
+app.use(cors({
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+}))
 
 //Models
 const User = require('./models/User')
