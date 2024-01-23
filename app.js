@@ -68,7 +68,7 @@ app.post("/auth/register", async (req, res) => {
     return res.status(422).json({ msg: "Email is required" });
   }
   if (!password) {
-    return res.status(422).json({ msg: "Pssword is required" });
+    return res.status(422).json({ msg: "Password is required" });
   }
   if (password !== confirmpassword) {
     return res.status(422).json({ msg: "Passwords are different" });
@@ -197,6 +197,7 @@ app.put("/user/:id", checkToken, async (req, res) => {
 mongoose
   .connect(process.env.DB_CONNECT)
   .then(() => {
+    app.listen(3000)
     console.log("Conected");
   })
   .catch((err) => console.log(err));
