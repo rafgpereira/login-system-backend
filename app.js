@@ -1,22 +1,18 @@
 //IMPORTS
 require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
+var express = require("express");
+var mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cors = require("cors");
+var cors = require("cors");
 
-const app = express();
+var app = express();
 
 //Configura resposta JSON
 app.use(express.json());
 //Configura CORS
 
-app.use((req, res, next)=>{
-    req.header("Access-Control-Allow-Origin", "*")
-    app.use(cors())
-    next()
-})
+app.use(cors())
 
 //Models
 const User = require("./models/User");
