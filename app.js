@@ -11,13 +11,12 @@ const app = express();
 //Configura resposta JSON
 app.use(express.json());
 //Configura CORS
-app.use(
-  cors({
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  })
-);
-app.options("*", cors());
+
+app.use((req, res, next)=>{
+    res.header("Access-Control-Allow-Origin", "*")
+    app.use(cors())
+    next()
+})
 
 //Models
 const User = require("./models/User");
@@ -116,7 +115,7 @@ app.post("/auth/login", async (req, res) => {
   }
   if (!password) {
     return res.status(422).json({ msg: "Password is required" });
-  }
+  } 
 
   //Checa se o usuario existe
   const user = await User.findOne({ email: email });
@@ -202,6 +201,7 @@ app.put("/user/:id", checkToken, async (req, res) => {
 mongoose
   .connect(process.env.DB_CONNECT)
   .then(() => {
+    app.listen(3000)
     console.log("Conected");
   })
   .catch((err) => console.log(err));
