@@ -197,7 +197,6 @@ app.put("/user/:id", checkToken, async (req, res) => {
 mongoose
   .connect(process.env.DB_CONNECT)
   .then(() => {
-    app.listen(3000)
     console.log("Conected");
   })
   .catch((err) => console.log(err));
