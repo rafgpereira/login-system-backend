@@ -138,7 +138,7 @@ app.post("/auth/login", async (req, res) => {
     );
     res
       .status(200)
-      .json({ msg: "Authentication completed", token, userId: user._id });
+      .json({ msg: "Authentication completed", token, userId: user._id, name: user.name});
   } catch (err) {
     console.log(error);
     res.status(500).json({ msg: "Server error" });
@@ -197,7 +197,7 @@ app.put("/user/:id", checkToken, async (req, res) => {
 mongoose
   .connect(process.env.DB_CONNECT)
   .then(() => {
-    app.listen(3000)
+    app.listen(3002)
     console.log("Conected");
   })
   .catch((err) => console.log(err));
